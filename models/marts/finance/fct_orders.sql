@@ -29,6 +29,8 @@ final as (
     select
         orders.order_id,
         orders.customer_id,
+        -- AJOUTEZ CETTE LIGNE ICI :
+        orders.order_date,
         -- On remplace les NULL par 0 pour les commandes gratuites
         coalesce(order_payments.total_amount, 0) as amount
 
