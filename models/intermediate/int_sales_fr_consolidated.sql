@@ -20,5 +20,6 @@ SELECT
     sales_qty,
     sales_revenue,
     transaction_date,
-    store_type
+    store_type,
+    sub_category,
 FROM unioned_sales

@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: mrt_revenue_reconciliation
+    description: "Table de réconciliation finale par sous-catégorie"
+    columns:
+      - name: sub_category
+        description: "La sous-catégorie du produit (ex: COLAS)"
+        tests:
+          - unique    # Vérifie qu'il n'y a pas de doublons de catégories
+          - not_null  # Vérifie qu'il n'y a pas de valeur vide
+
+      - name: revenue_diff
+        description: "Différence de revenus (France - Groupe)"
+        tests:
+          - not_null

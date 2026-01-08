@@ -1,4 +1,7 @@
 SELECT
+    -- Ajoutez cette ligne :
+    pdt_SUB_CATEGORY AS sub_category,
+    
     -- 1. Barcode (via votre macro)
     {{ clean_barcode('barcode_ean13') }} AS barcode,
     
