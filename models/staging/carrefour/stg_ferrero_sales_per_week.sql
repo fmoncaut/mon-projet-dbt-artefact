@@ -1,23 +1,20 @@
 SELECT
-    -- Pas de code-barres dans la source, on met NULL pour respecter le format
+    -- Pas de barcode dans cette table
     CAST(NULL AS STRING) AS barcode,
     
-    -- On garde le nom du produit car c'est notre seule info produit
-    product_name,
-    
-    -- Pas de magasin spécifié, on met NULL
     CAST(NULL AS STRING) AS store_id,
     
-    -- Nettoyage : On convertit le texte en nombre (INTEGER)
+    -- On garde le nom du produit
+    product_name,
+    
+    -- Ici on a bien les quantités (probablement en STRING vu le schéma précédent)
     SAFE_CAST(quantity AS INT64) AS sales_qty,
     
-    -- Nettoyage : On convertit le turnover (texte) en nombre (FLOAT)
+    -- Ici on a le turnover
     SAFE_CAST(turnover AS FLOAT64) AS sales_revenue,
     
-    -- On garde le numéro de semaine
-    week AS week_number,
+    SAFE_CAST(week AS INT64) AS week_number,
     
-    -- Source
     'FERRERO' AS store_type
 
 FROM {{ source('dbt_intro', 'ferrero_sales_per_week_dirty') }}
