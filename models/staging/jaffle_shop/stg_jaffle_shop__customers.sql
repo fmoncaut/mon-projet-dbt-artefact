@@ -1,7 +1,6 @@
-with 
+with source as (
 
-source as (
-
+    -- On ne renomme pas ici, on prend tout brut
     select * from {{ source('jaffle_shop', 'customers') }}
 
 ),
@@ -9,7 +8,8 @@ source as (
 renamed as (
 
     select
-        id,
+        -- 👇 On renomme UNIQUEMENT ici
+        id as customer_id,
         first_name,
         last_name
 
