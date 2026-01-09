@@ -1,1 +1,1 @@
-{{ local_sales_macro('crf_prx_sales_fr_data', 'PRX') }}
+{{ standardize_sales_macro('crf_prx_sales_fr_data', 'PRX') }}

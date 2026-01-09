@@ -1,4 +1,4 @@
-{% macro local_sales_macro(source_table_name, store_type_code) %}
+{% macro standardize_sales_macro(source_table_name, store_type_code) %}
 
 SELECT
     -- On réutilise notre petite macro à l'intérieur de la grande !
