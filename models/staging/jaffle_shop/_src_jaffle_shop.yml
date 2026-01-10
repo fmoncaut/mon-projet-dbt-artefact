@@ -8,8 +8,20 @@ sources:
     
     tables:
       - name: customers
+        columns:
+          - name: id
+            data_tests:
+              - unique
+              - not_null
+              
       
       - name: orders
+        columns:
+          - name: id
+            data_tests:
+            - unique
+            - not_null
+            
         # 👇 CORRECTION : Ce bloc doit être décalé vers la droite
         # Il appartient à "orders", pas à "jaffle_shop"
         config:
