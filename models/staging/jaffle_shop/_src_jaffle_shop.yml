@@ -2,22 +2,27 @@ sources:
   - name: jaffle_shop
     database: dbt-tutorial
     schema: jaffle_shop
+    description: : A clone of a Postgres application database
     # Config 1 : Pour toute la source (C'est bon)
     config:
       loaded_at_field: _etl_loaded_at
     
     tables:
       - name: customers
+        description: raw customer data
         columns:
           - name: id
+            description: Primary key for customer data
             data_tests:
               - unique
               - not_null
               
       
       - name: orders
+        description: dbt-raw orders data
         columns:
           - name: id
+            description: Primary key for orders data
             data_tests:
             - unique
             - not_null
