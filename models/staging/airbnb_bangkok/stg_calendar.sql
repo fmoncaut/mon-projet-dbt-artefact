@@ -4,20 +4,25 @@ WITH raw_calendar AS (
 
 SELECT
     listing_id,
-    
-    -- Conversion DATE
+
     CAST(date AS DATE) AS date,
 
-    -- Booléen disponibilité
     available AS is_available,
 
-    -- Nettoyage des PRIX
-    -- AVANT (Ce qui plante) :
-    -- SAFE_CAST(REPLACE(REPLACE(price, '$', ''), ',', '') AS FLOAT64) AS price,
+    -- Nettoyage + conversion robuste (STRING -> NUMERIC)
+    SAFE_CAST(
+      NULLIF(
+        REGEXP_REPLACE(price, r'[^0-9.]', ''),
+        ''
+      ) AS NUMERIC
+    ) AS price,
 
-    -- APRÈS (La correction) :
-    CAST(price AS NUMERIC) AS price,
-    CAST(adjusted_price AS NUMERIC) AS adjusted_price,
+    SAFE_CAST(
+      NULLIF(
+        REGEXP_REPLACE(adjusted_price, r'[^0-9.]', ''),
+        ''
+      ) AS NUMERIC
+    ) AS adjusted_price,
 
     minimum_nights,
     maximum_nights
