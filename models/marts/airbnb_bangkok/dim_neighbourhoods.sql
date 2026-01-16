@@ -5,6 +5,9 @@ WITH stg_neighbourhoods AS (
 )
 
 SELECT
+    -- Nettoyage : On renomme la colonne technique en nom métier
+    string_field_0 AS neighbourhood_group,
+    
     neighbourhood
 
 FROM stg_neighbourhoods

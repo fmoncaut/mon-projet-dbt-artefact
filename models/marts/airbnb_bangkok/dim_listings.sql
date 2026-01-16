@@ -6,7 +6,7 @@ WITH stg_listings AS (
 
 SELECT
     listing_id,
-    -- CORRECTION ICI : On prend 'name' (source) et on le renomme
+    -- On garde le renommage existant
     name AS listing_name,
     
     price,
@@ -14,8 +14,25 @@ SELECT
     room_type,
     accommodates,
     is_superhost,
+    
+    -- --- NOUVEAUX CHAMPS AJOUTÉS ---
+    
+    -- Informations Hôte
+    host_response_time,
+    host_acceptance_rate,
+    
+    -- Equipements (Raw)
+    amenities,
+    
+    -- Data Engineering : Extraction de flags pour Power BI
+    -- (Adapte la syntaxe LIKE selon le format de tes données, ici format standard)
+    CASE WHEN amenities LIKE '%Wifi%' THEN TRUE ELSE FALSE END AS has_wifi,
+    CASE WHEN amenities LIKE '%Pool%' OR amenities LIKE '%Piscine%' THEN TRUE ELSE FALSE END AS has_pool,
+    CASE WHEN amenities LIKE '%Kitchen%' OR amenities LIKE '%Cuisine%' THEN TRUE ELSE FALSE END AS has_kitchen,
 
-    -- GÉO (Indispensable pour la carte)
+    -- --- FIN NOUVEAUX CHAMPS ---
+
+    -- GÉO
     latitude,
     longitude
 
