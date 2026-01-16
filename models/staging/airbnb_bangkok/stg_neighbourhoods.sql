@@ -1,8 +1,11 @@
-WITH raw_neighbourhoods AS (
-    SELECT * FROM {{ source('airbnb', 'raw_neighbourhoods') }}
+-- models/staging/airbnb_bangkok/stg_neighbourhoods.sql
+
+with raw as (
+  select *
+  from {{ source('airbnb', 'raw_neighbourhoods') }}
 )
 
-SELECT
-    neighbourhood
-
-FROM raw_neighbourhoods
+select
+  neighbourhood_group,
+  neighbourhood
+from raw

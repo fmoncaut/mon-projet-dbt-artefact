@@ -1,25 +1,42 @@
-WITH raw_listings AS (
-    SELECT * FROM {{ source('airbnb', 'raw_listings') }}
+with raw as (
+  select *
+  from {{ source('airbnb', 'raw_listings') }}
 )
 
-SELECT
-    id AS listing_id,
-    name,
-    description,
-    
-    -- GÉO : On s'assure que ça reste du FLOAT (Nombre décimal)
-    CAST(latitude AS FLOAT64) AS latitude,
-    CAST(longitude AS FLOAT64) AS longitude,
+select
+  id as listing_id,
+  name,
+  listing_url,
+  neighbourhood,
+  room_type,
+  accommodates,
+  host_is_superhost as is_superhost,
+  minimum_nights,
+  host_id,
+  price,
 
-    -- PRIX : Puisqu'il est déjà en nombre dans le RAW, on le convertit juste en NUMERIC
-    CAST(price AS NUMERIC) AS price,
+  -- Champs souvent absents dans les datasets Airbnb -> on neutralise
+  cast(NULL as timestamp) as created_at,
+  cast(NULL as timestamp) as updated_at,
 
-    number_of_reviews,
-    review_scores_rating,
-    reviews_per_month,
-    host_is_superhost AS is_superhost,
-    neighbourhood_cleansed AS neighbourhood,
-    room_type,
-    accommodates
+  host_response_time,
+  host_acceptance_rate,
+  amenities,
 
-FROM raw_listings
+  review_scores_rating,
+  review_scores_accuracy,
+  review_scores_cleanliness,
+  review_scores_checkin,
+  review_scores_communication,
+  review_scores_location,
+  review_scores_value,
+
+  number_of_reviews,
+  reviews_per_month,
+  availability_365,
+
+  latitude,
+  longitude
+
+from raw
+where id is not null
