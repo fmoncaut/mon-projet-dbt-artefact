@@ -5,6 +5,8 @@ Projet réalisé dans le cadre de la formation Data Scientist – Artefact Schoo
 - dbt
 - BigQuery
 - SQL
+- Power BI
+- Dataiku
 
 ## Objectif
-Construire un modèle analytique à partir de données Airbnb.
+Construire un modèle analytique à partir de données
