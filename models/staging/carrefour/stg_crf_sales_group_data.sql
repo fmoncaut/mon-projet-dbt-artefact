@@ -1,0 +1,1 @@
+{{ standardize_sales_macro('crf_sales_group_data', 'GROUP') }}

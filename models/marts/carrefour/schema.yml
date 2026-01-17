@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: mrt_revenue_reconciliation
+    description: "Table finale de réconciliation comparant le CA France vs CA Groupe."
+    columns:
+      - name: sub_category
+        description: "Sous-catégorie produit (ex: COLAS, CONFISERIES)"
+        tests:
+          - unique
+          - not_null
+
+      - name: revenue_diff
+        description: "Écart calculé : (Revenu France - Revenu Groupe)"
+        tests:
+          - not_null
+
+      - name: status
+        description: "Indicateur d'alerte. Prend la valeur 'ALERT' si l'écart dépasse 1 centime."
+        tests:
+          - accepted_values:
+              values: ['OK', 'ALERT']

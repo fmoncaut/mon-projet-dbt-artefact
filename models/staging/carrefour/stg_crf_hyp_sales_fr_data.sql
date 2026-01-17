@@ -1,0 +1,1 @@
+{{ standardize_sales_macro('crf_hyp_sales_fr_data', 'HYP') }}

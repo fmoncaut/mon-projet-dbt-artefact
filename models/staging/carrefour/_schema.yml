@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: stg_crf_hyp_sales_fr_data
+    description: "Données de ventes des Hypermarchés (Source: Carrefour)"
+    columns:
+      - name: barcode
+        description: "Code barre EAN13 du produit (Clé de jointure)"
+        tests:
+          - not_null
+          # - unique  <-- Attention, ici un barcode peut apparaître plusieurs fois (plusieurs jours/tickets)
+
+      - name: sales_revenue
+        description: "Chiffre d'affaires réalisé"
+        tests:
+          - not_null
+
+  # On fait la même chose pour les autres tables (exemple abrégé)
+  - name: stg_crf_sup_sales_fr_data
+    description: "Données de ventes des Supermarchés"
+    columns:
+      - name: barcode
+        tests: [not_null]
+
+  - name: stg_crf_prx_sales_fr_data
+    description: "Données de ventes des magasins de Proximité"
+    columns:
+      - name: barcode
+        tests: [not_null]

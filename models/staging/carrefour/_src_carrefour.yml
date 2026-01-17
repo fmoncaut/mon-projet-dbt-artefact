@@ -1,0 +1,10 @@
+sources:
+  - name: dbt_intro # C'est le nom que vous utiliserez dans vos modèles {{ source('dbt_intro', 'table_name') }}
+    database: artefact1 # Remplacez par votre ID de projet GCP
+    schema: dbt_intro # Le dataset où vous avez copié les tables
+    tables:
+      - name: crf_prx_sales_fr_data
+      - name: crf_sup_sales_fr_data
+      - name: crf_hyp_sales_fr_data
+      - name: crf_sales_group_data
+      - name: ferrero_sales_per_week_dirty

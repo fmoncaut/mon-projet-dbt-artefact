@@ -1,0 +1,60 @@
+version: 2
+
+models:
+  - name: dim_neighbourhoods
+    columns:
+      - name: neighbourhood
+        tests: [not_null, unique]
+
+  - name: dim_listings
+    columns:
+      - name: listing_id
+        tests: [not_null, unique]
+
+  - name: fact_availability_daily
+    columns:
+      - name: listing_id
+        tests: [not_null]
+      - name: calendar_date
+        tests: [not_null]
+
+  - name: fact_reviews
+    columns:
+      - name: review_id
+        tests:
+          - not_null
+          - unique
+      - name: listing_id
+        tests:
+          - not_null
+      - name: review_date
+        tests:
+          - not_null
+
+  - name: kpi_neighbourhood_monthly
+    columns:
+      - name: neighbourhood
+        tests: [not_null]
+      - name: year_month
+        tests: [not_null]
+
+  - name: kpi_propertytype_monthly
+    columns:
+      - name: room_type
+        tests: [not_null]
+      - name: property_type
+        tests: [not_null]
+      - name: year_month
+        tests: [not_null]
+        
+  - name: investment_score_neighbourhood
+    columns:
+      - name: neighbourhood
+        tests: [not_null, unique]
+      - name: investment_score
+        tests: [not_null]
+
+
+  
+  
+

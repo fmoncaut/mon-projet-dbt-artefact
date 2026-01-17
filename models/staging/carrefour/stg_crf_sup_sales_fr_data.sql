@@ -1,0 +1,1 @@
+{{ standardize_sales_macro('crf_sup_sales_fr_data', 'SUP') }}
