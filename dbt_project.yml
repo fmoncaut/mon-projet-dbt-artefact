@@ -38,8 +38,11 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   mon_projet_dbt_artefact:
     staging:
+      +schema: staging_airbnb
       +materialized: view
 
     marts:
+      +schema: analytics_airbnb
       +materialized: table
+
 
