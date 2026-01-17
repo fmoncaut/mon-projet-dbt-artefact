@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: raw_airbnb
+    database: artefact1
+    schema: raw_airbnb
+    tables:
+      - name: listings
+      - name: calendar
+      - name: neighbourhoods
+      - name: reviews
