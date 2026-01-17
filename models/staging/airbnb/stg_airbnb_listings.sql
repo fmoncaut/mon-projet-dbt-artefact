@@ -27,7 +27,17 @@ clean as (
     safe_cast(beds as int64) as beds,
 
     -- price est souvent une string avec $ et virgules
-    safe_cast(regexp_replace(cast(price as string), r'[^0-9.]', '') as float64) as price,
+    -- prix
+cast(price as float64) as price_clean,
+
+    -- indicateurs qualité prix
+    case when price is not null then true else false end as has_price,
+
+    case
+    when price is not null and price > 50000 then true
+    else false
+    end as price_is_outlier,
+
 
     safe_cast(number_of_reviews as int64) as number_of_reviews,
     safe_cast(review_scores_rating as float64) as review_scores_rating
